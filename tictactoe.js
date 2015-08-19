@@ -2,10 +2,12 @@
 var count=0;
 var tie=1;
 var comp = 1;
-var check=['.lane_0', '.lane_1', '.lane_2', '.column_0', '.column_1', '.column_2', '.cross_1', '.cross_2']; 
-var emp = 'url("beach_s.jpg")';
-var x = 'url("x.jpg")';
-var o = 'url("o.jpg")';
+var check=['.lane_0', '.lane_1', '.lane_2', '.column_0', '.column_1', '.column_2', '.cross_1', '.cross_2'];
+//3 x 3 arr to track marks on the pieces. 10 is background, 1 is player's mark, 0 is computer's mark
+var arr=[[10, 10, 10], [10, 10, 10], [10, 10, 10]];
+var emp = 'url(beach_s.jpg)';
+var x = 'url(x.jpg)';
+var o = 'url(o.jpg)';
 
 window.addEventListener('load', function () {
 	loadOnePiece ();
@@ -28,6 +30,7 @@ function loadPieces () {
 	tie =1;
 	comp =1;
 	document.getElementById('comp').innerHTML='<p></p>';
+	arr=[[10, 10, 10], [10, 10, 10], [10, 10, 10]];
 	var allPuz = document.querySelectorAll('.puz');
 	for (var i=0; i<allPuz.length; i++) {
 		allPuz[i].parentNode.removeChild(allPuz[i]);
@@ -67,12 +70,13 @@ function giveLocation(rect, i) {
 };
 
 function gamePlayerChoice() {
-	//console.log("game player choice...");
 	var choice = 1;
-	if ((this.style.backgroundImage === emp)&&(comp === 1)) {
+	var pos = this.id.split("_");
+	if ((arr[pos[1]][pos[2]] === 10) && (comp === 1)) {
 		count=count+1;
-		this.style.backgroundImage=x;
+		this.style.backgroundImage = x;
 		this.style.backgroundPosition = '0px 0px';
+		arr[pos[1]][pos[2]] = 1;
 		choice = 0;
 		checkCompletion();
 	}
@@ -86,13 +90,15 @@ function gamePlayerChoice() {
 function checkCompletion() {
 	for (var i=0; i<check.length; i++) {
 			var all = document.querySelectorAll(check[i]);
-			//console.log(all[0].style.backgroundImage);
-			if ((all[0].style.backgroundImage===x)&&(all[1].style.backgroundImage===x)&&(all[2].style.backgroundImage===x)) {
+			var pos0 = all[0].id.split("_");
+			var pos1 = all[1].id.split("_");
+			var pos2 = all[2].id.split("_");			
+			if ((arr[pos0[1]][pos0[2]]===1)&&(arr[pos1[1]][pos1[2]]===1)&&(arr[pos2[1]][pos2[2]]===1)) {
 				document.getElementById('comp').innerHTML='<p>Congratulation, you win!</p>';
 				tie=0;
 				stopGame();
 			}
-			if ((all[0].style.backgroundImage===o)&&(all[1].style.backgroundImage===o)&&(all[2].style.backgroundImage===o)) {
+			if ((arr[pos0[1]][pos0[2]]===0)&&(arr[pos1[1]][pos1[2]]===0)&&(arr[pos2[1]][pos2[2]]===0)) {
 				document.getElementById('comp').innerHTML='<p>Oops, you lose!</p>';
 				tie=0;
 				stopGame();
@@ -106,34 +112,53 @@ function checkCompletion() {
 };
 
 function computerChoice() {
-	console.log("computer choice...");
 	var choice = 1;
 	for (var i=0; i<check.length; i++) {
 		var all = document.querySelectorAll(check[i]);
+		var pos0 = all[0].id.split("_");
+		var pos1 = all[1].id.split("_");
+		var pos2 = all[2].id.split("_");			
+		
 		if (choice === 1) {
-		if ((all[0].style.backgroundImage===o)&&(all[1].style.backgroundImage ===o)&&(all[2].style.backgroundImage === emp)) {
+		if ((arr[pos0[1]][pos0[2]]===0)&&(arr[pos1[1]][pos1[2]]===0)&&(arr[pos2[1]][pos2[2]]===10)) {
 			all[2].style.backgroundImage = o;
+			all[2].style.backgroundPosition = '0px 0px';
+			arr[pos2[1]][pos2[2]]=0;
 			choice = 0;
-		} else if ((all[0].style.backgroundImage===o)&&(all[2].style.backgroundImage===o)&&(all[1].style.backgroundImage === emp)) {
+		} else if ((arr[pos0[1]][pos0[2]]===0)&&(arr[pos2[1]][pos2[2]]===0)&&(arr[pos1[1]][pos1[2]]===10)) {
 			all[1].style.backgroundImage = o;
+			all[1].style.backgroundPosition = '0px 0px';
+			arr[pos1[1]][pos1[2]]=0;
 			choice = 0;
-		} else if ((all[1].style.backgroundImage ===o)&&(all[2].style.backgroundImage===o)&&(all[0].style.backgroundImage === emp)) {
-			all[0].style.backgroundImage =o;
+		} else if ((arr[pos1[1]][pos1[2]]===0)&&(arr[pos2[1]][pos2[2]]===0)&&(arr[pos0[1]][pos0[2]]===10)) {
+			all[0].style.backgroundImage = o;
+			all[0].style.backgroundPosition = '0px 0px';
+			arr[pos0[1]][pos0[2]]=0;
 			choice = 0;
 		}
 		}
 	}
 	for (var i=0; i<check.length; i++) {
 		var all = document.querySelectorAll(check[i]);
+		var pos0 = all[0].id.split("_");
+		var pos1 = all[1].id.split("_");
+		var pos2 = all[2].id.split("_");			
+
 		if (choice === 1) {
-		if ((all[0].style.backgroundImage===x)&&(all[1].style.backgroundImage===x)&&(all[2].style.backgroundImage===emp)) {
+		if ((arr[pos0[1]][pos0[2]]===1)&&(arr[pos1[1]][pos1[2]]===1)&&(arr[pos2[1]][pos2[2]]===10)) {
 			all[2].style.backgroundImage = o;
+			all[2].backgroundPosition = '0px 0px';
+			arr[pos2[1]][pos2[2]]=0;
 			choice = 0;
-		} else if ((all[0].style.backgroundImage===x)&&(all[2].style.backgroundImage===x)&&(all[1].style.backgroundImage=== emp)) {
+		} else if ((arr[pos0[1]][pos0[2]]===1)&&(arr[pos2[1]][pos2[2]]===1)&&(arr[pos1[1]][pos1[2]]===10)) {
 			all[1].style.backgroundImage = o;
+			all[1].style.backgroundPosition = '0px 0px';
+			arr[pos1[1]][pos1[2]]=0;
 			choice = 0;
-		} else if ((all[1].style.backgroundImage===x)&&(all[2].style.backgroundImage===x)&&(all[0].style.backgroundImage=== emp)) {
-			all[0].style.backgroundImage = o
+		} else if ((arr[pos1[1]][pos1[2]]===1)&&(arr[pos2[1]][pos2[2]]===1)&&(arr[pos0[1]][pos0[2]]===10)) {
+			all[0].style.backgroundImage = o;
+			all[0].style.backgroundPosition = '0px 0px';
+			arr[pos0[1]][pos0[2]]=0;
 			choice = 0;
 		}
 		}
@@ -142,11 +167,12 @@ function computerChoice() {
 		var a = Math.floor(Math.random()*3);
 		var b = Math.floor(Math.random()*3);
 		var ran = document.getElementById('puz_'+a+'_'+b);
-		if ((ran.style.backgroundImage !== 'url("x.jpg")')&&(ran.style.backgroundImage !== 'url("o.jpg")')) {
-			ran.style.backgroundImage = 'url(o.jpg)';
+		if (arr[a][b] === 10) {
+			ran.style.backgroundImage = o;
+			ran.style.backgroundPosition = '0px 0px';
+			arr[a][b] = 0;
 			choice = 0;
 		}
-		
 	}
 };
 
