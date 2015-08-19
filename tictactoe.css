@@ -1,0 +1,111 @@
+.nav a {
+  color: #5a5a5a;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 14px 10px;
+  text-transform: uppercase;
+}
+
+.nav li {
+  display: inline;
+}
+
+.jumbotron {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.jumbotron .container {
+  position: relative;
+  top: 0px;
+  margin: auto;
+}
+
+.jumbotron h1 {
+  color: #fff;
+  font-size: 48px;  
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
+  margin: auto;
+}
+
+.jumbotron p {
+  font-size: 20px;
+  color: #fff;
+}
+
+#total {
+	width: 300px;
+	position: relative;
+	margin: auto;
+}
+
+.puzzletext{
+	margin: auto;
+	font-size: 200%;
+	font-family: sans-serif;
+	color: grey;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 25px;
+}
+
+#puzzlearea {
+	height: 300px;
+	width: 300px;
+	background: gray;
+	position: relative;
+	margin: auto;
+	}
+
+	
+#onepiece {
+	height: 300px;
+	width: 300px;
+	border: solid 1px black;
+}
+	
+button {
+	font-size: 200%;
+	font-family: sans-serif;
+	margin: auto;
+	}
+
+#size {
+	width: 200px;
+	margin: auto;
+	display: block;
+	}
+
+.prettybutton {
+  display: block;
+  width: 150px;
+  height: 70px;
+  background: #4E9CAF;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  margin: auto;
+}
+.puz:hover {
+	opacity: 0.5;
+	cursor: pointer;
+	}
+
+#comp {
+	margin: auto;
+	font-size: 200%;
+	font-family: sans-serif;
+	color: gray;
+	text-align: center;
+}
+ 
+#comp p {
+	text-align: center;
+	  color: #4E9CAF;
+  font-size: 40px;  
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
+}
