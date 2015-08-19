@@ -1,6 +1,10 @@
 .nav a {
   color: #5a5a5a;
+<<<<<<< HEAD
   font-size: 14px;
+=======
+  font-size: 11px;
+>>>>>>> f3b4499485cadea1850f0cc2d31545cccdb71fcc
   font-weight: bold;
   padding: 14px 10px;
   text-transform: uppercase;
@@ -11,7 +15,11 @@
 }
 
 .jumbotron {
+<<<<<<< HEAD
   background-image:url(shell_wall_paper_s.jpg);
+=======
+  background-image:url('http://cdn2.bigcommerc');
+>>>>>>> f3b4499485cadea1850f0cc2d31545cccdb71fcc
   height: 500px;
   background-repeat: no-repeat;
   background-size: cover;
