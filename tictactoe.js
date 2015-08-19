@@ -3,9 +3,9 @@ var count=0;
 var tie=1;
 var comp = 1;
 var check=['.lane_0', '.lane_1', '.lane_2', '.column_0', '.column_1', '.column_2', '.cross_1', '.cross_2']; 
-var emp = 'url("beach_s.jpg")';
-var x = 'url("x.jpg")';
-var o = 'url("o.jpg")';
+var emp = 'url("http://huili0140.github.io/Web_Game_SlidingPuzzle_TicTacToe/beach_s.jpg")';
+var x = 'url("http://huili0140.github.io/Web_Game_SlidingPuzzle_TicTacToe/x.jpg")';
+var o = 'url("http://huili0140.github.io/Web_Game_SlidingPuzzle_TicTacToe/o.jpg")';
 
 window.addEventListener('load', function () {
 	loadOnePiece ();
@@ -67,11 +67,11 @@ function giveLocation(rect, i) {
 };
 
 function gamePlayerChoice() {
-	//console.log("game player choice...");
 	var choice = 1;
-	if ((this.style.backgroundImage === emp)&&(comp === 1)) {
+	//if ((this.style.backgroundImage === emp) && (comp === 1)) {
+	if (true) {
 		count=count+1;
-		this.style.backgroundImage=x;
+		this.style.backgroundImage = x;
 		this.style.backgroundPosition = '0px 0px';
 		choice = 0;
 		checkCompletion();
@@ -106,7 +106,6 @@ function checkCompletion() {
 };
 
 function computerChoice() {
-	console.log("computer choice...");
 	var choice = 1;
 	for (var i=0; i<check.length; i++) {
 		var all = document.querySelectorAll(check[i]);
@@ -118,7 +117,7 @@ function computerChoice() {
 			all[1].style.backgroundImage = o;
 			choice = 0;
 		} else if ((all[1].style.backgroundImage ===o)&&(all[2].style.backgroundImage===o)&&(all[0].style.backgroundImage === emp)) {
-			all[0].style.backgroundImage =o;
+			all[0].style.backgroundImage = o;
 			choice = 0;
 		}
 		}
