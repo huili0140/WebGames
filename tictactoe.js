@@ -112,8 +112,6 @@ function checkCompletion() {
 };
 
 function computerChoice() {
-	console.log('enter computerChoice...');
-	console.log(arr);
 	var choice = 1;
 	for (var i=0; i<check.length; i++) {
 		var all = document.querySelectorAll(check[i]);
@@ -139,9 +137,6 @@ function computerChoice() {
 			choice = 0;
 		}
 		}
-	console.log('choice one made...');
-
-
 	}
 	for (var i=0; i<check.length; i++) {
 		var all = document.querySelectorAll(check[i]);
@@ -167,8 +162,6 @@ function computerChoice() {
 			choice = 0;
 		}
 		}
-	console.log('choice two made...');
-
 	}
 	while (choice === 1) {
 		var a = Math.floor(Math.random()*3);
@@ -180,11 +173,7 @@ function computerChoice() {
 			arr[a][b] = 0;
 			choice = 0;
 		}
-	console.log('choice random made...');		
 	}
-	console.log('exit computerChoice...');
-	console.log(arr);
-
 };
 
 function stopGame() {
